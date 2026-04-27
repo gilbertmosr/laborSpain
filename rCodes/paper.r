@@ -253,16 +253,16 @@ fa <- fa[, value := 100 * value / tLab]
 #####################
 plot <- ggplot(fa[value != 0, ], mapping = aes(
   y = value, x = comp, group = ageg,
-  colour = ageg, fill = ageg, linetype = ageg
-)) +
-  theme(
+  colour = ageg, fill = ageg, linetype = ageg)) + 
+mygthemep + theme(
     panel.spacing.x = unit(2, "lines"),
     aspect.ratio = 1.5 / 1,
   ) +
   geom_col(na.rm = TRUE, color = "black", alpha = 0.7) +
   geom_hline(yintercept = 0, size = 0.3, color = "gray80") +
   labs(x = NULL, y = "% contributed") +
-  facet_grid(cols = vars(img)) 
+  facet_grid(cols = vars(img))+
+  scale_colour_manual(values = mygcolor[c(3, 1, 6)])
 
 # dev.off()
 plot

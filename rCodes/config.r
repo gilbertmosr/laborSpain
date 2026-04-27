@@ -13,7 +13,7 @@ mygthemep <- theme_bw() +  theme(
     strip.text = element_text(size = 8)
     
   )
-# mygcolor <- c(`young`= "green", `adult`= "blue" , `older`= "yellow" )
-# mygshape <- c(15, 16, 17,18)
+mygcolor <- c(`young`= "green", `adult`= "blue" , `older`= "yellow" )
+mygshape <- c(15, 16, 17,18)
 
 
