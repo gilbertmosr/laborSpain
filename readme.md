@@ -7,3 +7,8 @@ Coming soon.
 All data will be categorized by age and immigration status, including:
 - Annual estimates of labor participation rates and worked hours.
 - Annual population estimates.
+
+
+## Next Graphics
+- Create the same as wpx, whx, stx, for men and women
+- Create donut plot for immigrant and native

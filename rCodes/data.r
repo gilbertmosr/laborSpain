@@ -4,6 +4,8 @@
 ## Initial Data processing
 ################################################
 
+usePackages(pkgs)
+
 data <- read_excel("./data/Data.xlsx" )
 data <-  as.data.table(data)
 names(data) <- c("year", "age", "sex", "img", "whx", "wpx", "pop")
@@ -27,7 +29,8 @@ data[, whx := 50*whx]
 # total labour
 data[, lab := whx*wpx*pop]
 
-## compute total populaiton by year, img and sex
+# replace spain with spanish in img
+data[img == "Spain", img := "Spanish"]
 
 ## save for later use
 saveRDS(data, "./data/data.rds")

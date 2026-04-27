@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage{setspace}
+\usepackage[bottom]{footmisc}
+ \usepackage{amsmath}
+ \usepackage{natbib} 
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[
+backend=biber,
+style=apa,
+sorting=nyt  
+]{biblatex}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref} 
+
+\addbibresource{ref.bib}
+
+\makeatletter
+\newcommand{\myfnsymbol}[1]{%
+  \expandafter\@myfnsymbol\csname c@#1\endcsname
+}
+\newcommand{\@myfnsymbol}[1]{%
+  \ifcase #1
+  \or 1% 1
+  \or 2% 2
+  \or 3% 3
+  \or \TextOrMath{\textasteriskcentered}{*}% 4
+  \or \TextOrMath{\textdagger}{\dagger}% 5
+  \fi
+}
+\newcommand{\affiliationA}{\@myfnsymbol{1}}
+\newcommand{\affiliationB}{\@myfnsymbol{2}}
+\newcommand{\affiliationC}{\@myfnsymbol{3}}
+\newcommand{\equalcontributor}{\@myfnsymbol{4}}
+\newcommand{\correspondingA}{\@myfnsymbol{5}}
+\makeatother
+
+\title{\textbf{Estimating the Influence of Demographic Ageing and Migration to the Spanish Aggregate Labour Supply}}
+
+\author{
+  Gilbert Montcho\textsuperscript{\affiliationA,\equalcontributor},\\
+  Alejandro Steven Fonseca-Zendejas\textsuperscript{\affiliationB,\equalcontributor,\correspondingA},\\
+  Marcel Mérrete\textsuperscript{\affiliationC,\equalcontributor}
+}
+
+\begin{document}
+
+\begin{spacing}{1.5}
+
+% Thanks notes for title uses \myfnsymbol
+\renewcommand{\thefootnote}{\myfnsymbol{footnote}}
+\maketitle
+% Layout the \thanks notes in the order you want
+\footnotetext[1]{Department of Demography, University of Montreal, Montreal, Quebec, Canada}%
+\footnotetext[2]{Department of Economics, Universidad Loyola Andalucía, Seville, Spain}%
+\footnotetext[3]{Department of Economics, University of Ottawa, Ontario, Canada}%
+\footnotetext[4]{All authors contributed equally}%
+\footnotetext[5]{Corresponding author: asfonseca@uloyola.es}%
+
+\setcounter{footnote}{0}% Restart footnote counter
+% Footnotes for rest of document uses \fnsymbol 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\begin{abstract}
+\noindent Population aging has raised concerns about its impact on the labour supply. However, quantifying these effects often focuses only on the increase in the elderly population, at the expense of the working age groups. This article estimates the aggregate labour supply in Spain and examines the extent to which population ageing, immigration, and individual behaviors have contributed to its growth between 2006 and 2023.
+
+\vspace{0.7em}\par
+\textbf{Keywords}: Labour Supply, Immigration, Populating Ageing, Decomposition Models.
+\end{abstract}
+
+\newpage 
+
+\tableofcontents
+\newpage  
+
+\section{Introduction and Literature}
+Across the countries of Western Europe, Spain is a representative case that exhibits two major phenomena that currently concern policymakers: population ageing and immigrant inflows. These conditions result in several economic and social outcomes. From an initial standpoint, it is widely recognized that there are side-effects to an ageing society, which are evident in social security finances under substantial stress affecting PAYG systems \parencite{diaz2009delaying,boeri2024pay}, increments in public expenditure on health services \parencite{cristea2020impact,aiyar2016impact,bijak2007population}, and social security \parencite{failde2021perspective}. Furthermore, the ageing population impacts the labour market as there exist a decline in labour force \parencite{maestas2023effect}. Concerning the labour market in Spain, \textcite{casares2018labor}, demonstrated that labour force shocks are more persistent, and this labour force growth can be explained by separate factors and one such factor is the influx of a substantial number of non-EU immigrants. This suggest that immigration influences the Spanish aggregate labour supply besides the age structure of the population. \\
+
+ As a result, several investigations have suggested that replacement migration is proposed as a strategy to alleviate the effects of ageing because it assists in easing downturns in labour supply, boost competitiveness and fosters economic growth \parencite{stepanek2022sectoral,okamoto2021immigration,UNATIONS}. However, the expansion of working population and, therefore, the increase in public revenues, migration also creates additional needs for public services. Consequently, migration affects both the tax and the welfare system \parencite{fiorio2023migration,naumann2021population}. For example, as stated in \textcite{preston2014effect}, immigration can result in costs by the utilization of public services but can also influence the expense of offering services to natives. Having said that, in developing countries, extended individual longevity or population ageing and migration are among the most significant challenges \parencite{ciobanu2020intersections}. \\
+
+ Spain, as various developed economies, present population ageing owing to the increasing life expectancy and falling fertility rates. This demographic trend impacts the job markets and the influence of the reduction of labour supply gets more evident as the "baby boomer" generation is getting older and ready for retirement \parencite{casares2018labor}. The present circumstances in the Spanish labour market are a result of intense and continous unemployment rates which have been explained through imbalances between labour supply and demand. Several facts shape the Spanish labour market conditions among which the institutional framework (types of employment contracts), demographic composition of the population, economic sensitivity to fluctuations, the grey economy, and internal migration related to the redistribution of human capital between natives and immigrants \parencite{bentolila1990mismatch,bentolila2010two,congregado2014unemployment,guell2021so}. Overall, unemployment in Spain is seen as a structural challenge \parencite{bentolila2020dual}. Meanwhile the contributions in terms of individual participation has experienced different phases throughout the years. This highlights that in both economic growth and contraction, the way different types of individuals respond to economic activity is essential to understanding the compostition of labour supply. \\
+
+ The Spanish economy has presented increasing rates of economic activity during 2004 to 2007, commonly this period is understood as an expansionary phase. However, as many other economies, during the economic crisis of 2008, this upward trend has moved in the opposite way. In the phase before the Great Recession, the demographic profile of unemployment in Spain was shaped by an average total unemployment rate of 8,2\% in 2007, the lowest unemployment rate achieved since becoming part of the European Union (EU) in 1986. This population characteristics within the job market status showed that the youth unemployment rate remained low near the values captured of total unemployment, albeit high in comparison to other EU countries. Moreover, female conditions in the Spanish labour market, had also attained the lowest unemployment rate reached, achieving an average value of 10,7\% in 2007. Simultaneously, during the pre-crisis growth period, a large wave of immigrants arrived in Spain altered the demographic structure of the working population \parencite{amuedo2008complements, arango2013exceptional,gonzalez2011very}. Nonetheless, the international financial downturn alongside substantial housing and mortgage crisis caused the economy of Spain to experience considerable impacts regarding individual’s behaviour in the job market.\\
+
+ As stated before, the high volatility of unemployment during economic cycles impact people’s engagement in the labour force and their retirement decisions. Within a framework where the economy deals with population ageing, the Spanish labour market participation has been explained in multiple manners. From one side, labour supply by gender has taken importance due to the deep impact of the Great Recession on the Spanish labour market. In terms of decisions to join the working population during times of crisis, most of the results from analysis associated to gender-based workforce supply patterns emphasize that the presence of a countercyclical behaviour of labour supply by gender takes importance in Spain. This conduct is referred to as added-worker effect (AWE), where the focus is on the increase of the involvement of women in the active population as the couple falls into unemployment and, to a lower extent, when the partner is self-employed. Meaning that AWE influences women’s decision-making during economic crises, particularly in countries that are highly responsive to economic cycles, such as Spain \parencite{congregado2014unemployment,sanz2020labor}. Conversely, immigrant employment declined leading to a decrease of foreign workforce and working-age individuals \parencite{rodriguez2016labor}. Consequently, these labour participation patterns across the two phases of the recession, the international financial crisis and the eurozone crisis, changed the structure of labour supply. In other words, during the recession in Spain, most of the labour force participation was attributed by the increase of female workers in the service sector, a male non-dominated economic sector, and a drop in the share of immigrants in the workforce. \\
+
+ The migration process has taken importance in the early 2000s, when Spain used to be considered as a source of emigration. Over the past years, the increasing inflows experienced shaped the structure of the working population. This trend was hit during the economic downturn and reduced foreign migrations in Spain.  According to the National Institute of Statistics of Spain (Instituto Nacional de Estadística, INE), the country registered 599,074 immigrations in 2008, the number of immigrants peaked during this year. Therefore, the share of immigrants in the working-age population was around 13,9\%. However, the burden of job losses during the crisis was disproportionately endured by foreign workers, by 2013 the share of immigrants in the labour market reached in average 11\%. The immigration inflow from abroad fell more than 50\% between 2008 and 2013. Consequently, Spain faced net migration outflows. In contrast, after the turbulences faced in this country, the evolution of the immigration inflows recovered the initial behaviour. In 2014, the rate of immigrants entering the country was 8,8\%, while in 2019 larger increments of internal migration flows raised. Regardless of the health crisis of the COVID-19, the ongoing influx of foreign arrivals kept increasing resulting in 1,258,894 immigrants in 2022, making the largest number of immigrants to date. 
+
+ 
+
+\section{Data Source and Methodology}\label{sec:lab_method}
+
+  \subsection{Measuring the Aggregate Labour Supply}
+
+ The aggregate labour supply \(L\) is calculated as the weighted sum of annual hours worked, categorized by age \(a\) an residence status \(r\) (\(whx_{ar}\)), with \(r = (\text{immigrant, native})\). The weighting factor results from the multiplication of the total size of the population (\(pop_{r}\)), the structure of the population (\(str_{ar}\)), and the labour participation rates (\(wpx_{ar}\)) segmented by age and residential status.
+
+
+  \begin{equation}\label{eq:pclab}
+    L = \displaystyle\sum_{r}\displaystyle\sum_{a}(pop_{r} \times str_{ar} \times wpx_{ar} \times whx_{ar}) = f(pop_{r}, str_{ar}, wpx_{ar}, whx_{ar})
+  \end{equation}
+
+
+  \subsection{The Model of Continuous Change}
+
+The continuous change model was applid to asses the issolated effect of demographic ageing on the aggregate labour supply  \parencite{horiuchiDecompositionMethodBased2008} was used. This model facilitates decomposing the difference between two metrics, derived from the same process, into multiple component, each associated with the contribution of the process's underlying factors. The process can be expressed as a function \(f\), considering the values of the factors as arguments (predictor variables or covariates) and yields a summary measure (target variable or dependent variable). As shown in \textcite{horiuchiDecompositionMethodBased2008}, when factors move from values  \(x_i(t_1)\) to \(x_i(t_2)\) over the interval from  \(t_1\) and \(t_2\), the summary measure shifts from \(f(x_i(t_1))\) to \(f(x_i(t_2))\). The difference between these measures can be broken down into additive components \(c_{i}\) which indicate the degree to which the changes in each factor affect this difference. This is expressed by equation \eqref{eq:hofr}.
+  
+  \begin{equation} \label{eq:hofr}
+    f(x_i(t_2)) - f(x_i(t_1)) = \displaystyle\sum_{i}c_{i}
+  \end{equation}
+
+  \vspace{0.7em}\par
+
+where  \(i = 1, 2, ..., n\) denotes tje factors involved. This decomposition relies on the assumtion that the covariate change occurs progressively along a real -or assumed- time dimension  \(t_1 \rightarrow t_2\). It offers a justification for treating the effects of the factors as additive and the exclusion of interaction terms, despite the process being non-additive funcion of the covariates \parencite[p.~786]{horiuchiDecompositionMethodBased2008}. Therefore, it can be understood that the model establishes a decomposition function \(g\) that, though a process function \(f\), converts two sets of covariates, the vectors \(X(t_1)\) and \(X(t_2)\) indicating the values of covariates \(X = (x_1, ..., x_i, ..., x_n)\), which indicate the values of the covariates at time \(t_1\) and \(t_2\), into a series of effect contributions denoted by the vector \(C = (c_1, ..., c_i, ..., c_n)\). Consequently, we can express that:
+  
+  \begin{equation}\label{eq:gfr}
+    C = g(X, f)
+  \end{equation}
+
+
+  Since the series \(X\) and \(C\)  are of equal lengths, this leads to a perfect alignment between factors and the effects, enabling them to be grouped for analytical purposes. Moreover, continuity suggest that each value  \(C\) is aquired through integration in accordanc with the equation: 
+  
+  \begin{equation}\label{eq:mxfr}
+    c_i = \int_{x_i(t_1)}^{x_i(t_2)} \frac{\partial f(t)}{\partial x_i(t)} dx_i(t)
+  \end{equation}
+
+
+  The equation \eqref{eq:mxfr} is estimated by nymerical integration where \(\int_{x_i(t_1)}^{x_i(t_2)} d(t)\)  is approximated by \(\sum_{x_i(t_1)}^{x_i(t_2)} \delta(t)\), with \(x_{it} = x_i(t)\), indicating the value of a factor \(i\) at a time \(t\). By adjusting the continuous change model for equation  \eqref{eq:pclab}, the aggregate labour supply from 2006 to 2023 can be distributed not only among these three components but also across age groups and residence status. In this research, the decomposition process was implemented by constructing an auxiliary function \(g\) using the R package \parencite{Rstat:2018} DemoDecomp \parencite{DemoDecomp:2018}. The codes and data enabled the following results can be acessed upon request. 
+  
+  
+  \vspace{0.7em}\par
+The CCM model provides a more effective alternative to the standardization method frequently used in demography to account for differences in population structure while comparing demographic metrics. In fact, standardization involves using a third population as a reference point, which makes it less robust because different standards may produce different outcomes. The CCM model resolves this problem and enables direct decomposition without the need for interaction terms across the various factors. It is necessary to point out that integration effects in regression analysis pertain to cases where the influence of a variable on the dependent variable is neither constant nor additive because it relies on the values of the other variables. In decomposition methods like standardization, any mismatch between the overall change and the sum of the variables’ effects is referred to as an interaction effect. In such scenarios, the interaction indicates an incomplete distinction of individual covariates to the total change or variation in the dependent variable. 
+
+
+\section{Results and Analysis}
+
+\section{Discussion and Conclusion}
+
+\printbibliography
+
+\end{spacing}
+
+\end{document}

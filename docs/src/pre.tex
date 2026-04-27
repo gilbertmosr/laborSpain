@@ -1,5 +1,5 @@
 % Load Package
-\usepackage{blindtext}
+% \usepackage{blindtext} % optional filler-text package; not required for build
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{tabularx}
@@ -10,11 +10,11 @@
 \usepackage{indentfirst}
 \usepackage{dcolumn}
 \usepackage{nameref}
-\usepackage{placeins} % put this in your pre-amble
+% \usepackage{placeins} % optional; missing in current TeX install
 \usepackage{flafter}  % put this in your pre-amble
 \usepackage{float} % to manage figure float
-\usepackage{authblk} % for co-author
-\usepackage{dirtytalk} % for inserting quotation
+% \usepackage{authblk} % not used; missing in current TeX install
+% \usepackage{dirtytalk} % not used; missing in current TeX install
 \usepackage{siunitx} % for the \nombre command
 %\usepackage{cite}
 \usepackage{bookmark}
@@ -27,7 +27,7 @@
 %   allcolors=blue
 % }
 
-\usepackage{threeparttable}
+% \usepackage{threeparttable} % not used; missing in current TeX install
 \usepackage{booktabs, longtable}
 \usepackage{tabularx}
 \usepackage[singlelinecheck=false]{caption}
@@ -62,12 +62,12 @@
 \DeclareUnicodeCharacter{001B}{-} % Unicode U+2212 is MINUS SIGN, which is not set up by default with inputenc{00A0}{~}
 
 % Count of words
-\usepackage{moreverb} % for verbatim ouput
+\usepackage{verbatim} % provides \verbatiminput
 \immediate\write18{texcount  -inc -merge -nobib -sum -sub=section \jobname.tex > ./texcount.tex}
 \newcommand\wordcount{\verbatiminput{./texcount.tex}}
 
 % font family and size
-\usepackage{CormorantGaramond}
+% \usepackage{CormorantGaramond} % optional font package; missing in current TeX install
 %\usepackage[default]{gillius}
 
 %\usepackage{anyfontsize}
@@ -88,5 +88,15 @@
 
 
 \usepackage{url}
-\usepackage[style=apa,backend=biber,url=false,doi=false,natbib]{biblatex}
-\addbibresource{src/ref.bib}
+\IfFileExists{biblatex.sty}{%
+  \usepackage[style=apa,backend=biber,url=false,doi=false,natbib]{biblatex}
+  \addbibresource{src/ref.bib}
+}{%
+  \usepackage{natbib}
+  \let\parencite\citep
+  \let\textcite\citet
+  \newcommand{\printbibliography}[1][]{%
+    \bibliographystyle{apalike}
+    \bibliography{src/ref}
+  }
+}
