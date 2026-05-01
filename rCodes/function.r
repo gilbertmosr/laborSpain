@@ -31,7 +31,7 @@ getEffect <- function(labdta) {
         rates2 <- as.matrix(labdta[year == y + 1, .(tpop, stx, wpx, whx)])
         # compute res for etable
         res <- DecompContinuous(func = getLabor, rates1, rates2, N = N)
-        res <- data.table(labdta[year == y, .(year, ageg, img)], res)
+        res <- data.table(labdta[year == y, .(year, age, nation)], res)
         etable <- rbind(etable, res)
         # increment counter and diplay only progress that are multiple of 5
         counter <- counter + 1
@@ -83,3 +83,35 @@ DecompContinuous <-
         }
         return(effectmat)
     }
+
+
+###################################################################
+# GGPlot settings
+# used aluf and ueCanada
+###################################################################
+mygthemep <- theme_bw() +  theme(
+    legend.position = "top", 
+    legend.title = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid = element_line(linetype = "dotted"),
+    panel.border = element_rect(colour = NA, fill = NA),
+    strip.background = element_blank(),
+    strip.text.x = element_text(hjust = 0),
+    strip.text = element_text(size = 8)
+    
+  )
+mygcolor <- c("#021250", "#8B0D11", "#FCB507")
+mygshape <- c(15, 16, 17,18)
+
+sepline <- ggplot()+ 
+    geom_vline(xintercept = 1, linetype = "dashed",size = 0.1) + 
+    geom_vline(xintercept = 2, linetype = "dashed",size = 0.1) +
+    scale_x_continuous(limits = c(0, 3)) +
+    theme_void()
+
+sepline2 <- ggplot() +
+    annotate("text", x = 1, y = 0.5, label = "+", size = 7, fontface = "bold", colour = "black") +
+    annotate("text", x = 2, y = 0.5, label = "=", size = 7, fontface = "bold", colour = "black") +
+    scale_x_continuous(limits = c(0, 3), expand = c(0, 0)) +
+    scale_y_continuous(limits = c(0, 1), expand = c(0, 0)) +
+    theme_void()

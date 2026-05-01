@@ -1,0 +1,7 @@
+type,effect,comp,value,pct_total_change
+Birthplace status,Foreign,,609765261936.58,151.06
+Birthplace status,Spanish,,-206105783209,-51.06
+Birthplace status,Total,,403659478727.58,100
+Component,Population size,tpop,660776261349.25,163.7
+Component,Age structure,stx,-244896250266.18,-60.67
+Component,Behaviour,wpx + whx,-12220532355.5,-3.03

@@ -22,6 +22,7 @@
 %\usepackage{mathptmx} % for nice font
 %\fontfamily{cmss}
 \usepackage{mathtools}
+\usepackage{exscale}
 % \hypersetup{
 %   colorlinks=true,
 %   allcolors=blue
@@ -70,7 +71,7 @@
 % \usepackage{CormorantGaramond} % optional font package; missing in current TeX install
 %\usepackage[default]{gillius}
 
-%\usepackage{anyfontsize}
+\usepackage{anyfontsize}
 %\fontsize{15}{18}\selectfont
 \usepackage[fontsize=13]{scrextend}
 %\usepackage[14pt]{extsizes}
@@ -88,15 +89,32 @@
 
 
 \usepackage{url}
-\IfFileExists{biblatex.sty}{%
-  \usepackage[style=apa,backend=biber,url=false,doi=false,natbib]{biblatex}
-  \addbibresource{src/ref.bib}
-}{%
-  \usepackage{natbib}
-  \let\parencite\citep
-  \let\textcite\citet
-  \newcommand{\printbibliography}[1][]{%
-    \bibliographystyle{apalike}
-    \bibliography{src/ref}
-  }
-}
+\usepackage[
+	backend=biber,
+	style=authoryear,
+	sorting=ydnt,
+	citestyle=authoryear,
+	natbib=true
+]{biblatex}
+\addbibresource{citations.bib}
+
+% Package settings
+% \usepackage{datatool}
+% \DTLsetseparator{,}
+% \DTLloaddb{statex}{../shared/statex.csv}
+
+% % new command (self created ) to apply numprint and or abs
+% % reference https://www.overleaf.com/learn/latex/Commands
+% % for Dn
+% % based on \usepackage{siunitx}
+% \usepackage{siunitx}
+% \usepackage{fp}
+% \newcommand{\numDn}[1]{\DTLassignfirstmatch{statex}{sKey}{#1}{\sVal=sVal}\FPeval{\sVal}{clip(abs(\sVal))}\num{\sVal}}
+% % for Up
+% \newcommand{\numUp}[1]{\DTLassignfirstmatch{statex}{sKey}{#1}{\sVal=sVal}\num{\sVal}}
+
+
+
+% usage
+% Down is \numDn{whxDiff36Older55} and Up is \numUp{whxDiff36Older55}
+% reference data

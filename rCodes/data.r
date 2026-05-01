@@ -5,6 +5,7 @@
 ################################################
 
 usePackages(pkgs)
+usePackages(c("ineapir", "dplyr", "tidyr", "data.table"))
 
 data <- read_excel("./data/Data.xlsx" )
 data <-  as.data.table(data)
@@ -34,23 +35,5 @@ data[img == "Spain", img := "Spanish"]
 
 ## save for later use
 saveRDS(data, "./data/data.rds")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
