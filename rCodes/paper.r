@@ -57,6 +57,7 @@ popSum <- dcast(
   ind + year ~ nation,
   value.var = "value"
 )
+popSum[, Combined := Spanish + Foreign]
 
 
 # Order rows
@@ -85,31 +86,34 @@ popSumTex <- rbindlist(
     levels(popSum$ind),
     function(ind_name) {
       x <- popSumTex[ind == ind_name]
-      change <- x[year == 2025, .(Foreign, Spanish)] - x[year == 2005, .(Foreign, Spanish)]
+      change <- x[year == 2025, .(Spanish, Foreign, Combined)] - x[year == 2005, .(Spanish, Foreign, Combined)]
       rbind(
         data.table(
           label = paste("\\textbf{", x$ind_label[1], "}", sep = ""),
           Spanish = "",
-          Foreign = ""
+          Foreign = "",
+          Combined = ""
         ),
         x[
           ,
           .(
             label = paste("\\quad", year),
             Spanish = sprintf("%.2f", Spanish),
-            Foreign = sprintf("%.2f", Foreign)
+            Foreign = sprintf("%.2f", Foreign),
+            Combined = sprintf("%.2f", Combined)
           )
         ],
         data.table(
           label = "\\quad Change",
           Spanish = sprintf("%.2f", change$Spanish),
-          Foreign = sprintf("%.2f", change$Foreign)
+          Foreign = sprintf("%.2f", change$Foreign),
+          Combined = sprintf("%.2f", change$Combined)
         )
       )
     }
   )
 )
-setnames(popSumTex, c("", "Spanish", "Foreign"))
+setnames(popSumTex, c("", "Spanish", "Foreign", "Combined"))
 
 make_tabular_star <- function(file, from, to) {
   lines <- readLines(file)
@@ -122,21 +126,21 @@ out.tex <- latex(
   popSumTex,
   file = file.path("./resrc/popSum.tex"),
   booktabs = TRUE,
-  collabel.just = c("l", "r", "r"),
-  col.just = c("l", "r", "r"),
+  collabel.just = c("l", "r", "r", "r"),
+  col.just = c("l", "r", "r", "r"),
   center = "none",
   rowname = NULL,
   table.env = FALSE,
   longtable = FALSE,
   cgroup = c("", "Birthplace status"),
-  n.cgroup = c(1, 2),
+  n.cgroup = c(1, 3),
   dcolumn = FALSE
 )
 popSumFile <- file.path("./resrc/popSum.tex")
 make_tabular_star(
   popSumFile,
-  "\\\\begin\\{tabular\\}\\{lcrr\\}",
-  "\\\\begin{tabular*}{\\\\textwidth}{@{\\\\extracolsep{\\\\fill}}lcrr}"
+  "\\\\begin\\{tabular\\}\\{lcrrr\\}",
+  "\\\\begin{tabular*}{\\\\textwidth}{@{\\\\extracolsep{\\\\fill}}lcrrr}"
 )
 
 
