@@ -19,6 +19,23 @@ data <- readRDS("./data/epa_yr.rds")
 # Keep only target years
 dta <- data[year %in% c(2005, 2025)]
 
+# Compute combined population and rbind
+dta <- rbindlist(
+  list(
+    dta,
+    dta[
+      ,
+      .(
+        pop = sum(pop, na.rm = TRUE),
+        wpx = weighted.mean(wpx, pop, na.rm = TRUE),
+        whx = weighted.mean(whx, pop, na.rm = TRUE)
+      ),
+      by = .(year, age)
+    ][, nation := "Combined"]
+  ),
+  fill = TRUE
+)
+
 # Create summary table
 popSum <- dta[
   ,
@@ -57,7 +74,7 @@ popSum <- dcast(
   ind + year ~ nation,
   value.var = "value"
 )
-popSum[, Combined := Spanish + Foreign]
+
 
 
 # Order rows
